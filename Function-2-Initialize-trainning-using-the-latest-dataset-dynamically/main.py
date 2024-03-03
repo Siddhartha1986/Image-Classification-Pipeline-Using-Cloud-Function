@@ -14,15 +14,18 @@ def check_and_train_model(request):
         aiplatform.init(location='us-central1')
         logging.info("AI Platform initialized.")
 
-        # Fetch the datasets and get the most recent one
-        dataset_list = list(aiplatform.ImageDataset.list(order_by="create_time desc"))  # Convert iterator to list
-        if not dataset_list:
-            logging.error("No datasets found.")
-            return {"message": "No datasets found."}, 404
+        # Fetch the datasets and filter by name, then get the most recent one
+        all_datasets = aiplatform.ImageDataset.list(order_by="create_time desc")
+        # Filter datasets where the display_name matches 'dataset-construction'
+        filtered_datasets = [ds for ds in all_datasets if ds.display_name == 'dataset-construction']
+        
+        if not filtered_datasets:
+            logging.error("No matching datasets found.")
+            return {"message": "No matching datasets found."}, 404
 
-        latest_dataset = dataset_list[0]
+        latest_dataset = filtered_datasets[0]  # Get the most recent dataset
         latest_dataset_id = latest_dataset.resource_name.split('/')[-1]
-        logging.info(f"Latest dataset ID: {latest_dataset_id}")
+        logging.info(f"Latest dataset ID for 'dataset-construction': {latest_dataset_id}")
 
         # Fetch the latest dataset ID from Cloud Storage
         storage_client = storage.Client()
