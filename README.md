@@ -3,6 +3,7 @@
 # Image Classification Pipeline Using Cloud Functions
 
 This repository contains a complete pipeline for an image classification task using Google Cloud Functions and Vertex AI. The pipeline includes uploading images to a Cloud Storage bucket, creating a dataset, initializing model training, and making predictions with the trained model.
+[CLICK HERE FOR DETAILED REPORT OF THE PROJECT](https://github.com/Siddhartha1986/Image-Classification-Pipeline-Using-Cloud-Function/blob/main/Internship_Project_Report.pdf)
 
 ## Structure
 
