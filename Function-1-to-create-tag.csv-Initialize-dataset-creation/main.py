@@ -7,7 +7,7 @@ from google.cloud import storage, aiplatform
 import csv
 import io
 
-BUCKET_NAME = "construction-images"  # Hardcoded bucket name
+BUCKET_NAME = "YOUR_CLOUD_BUCKET_1"  # Hardcoded bucket name, Replace it with your own bucket name
 THRESHOLD = 100
 TAG_CSV_FILE = "tag.csv"  # Fixed filename
 DATASET_DISPLAY_NAME = 'dataset-construction'  # Define the dataset name
