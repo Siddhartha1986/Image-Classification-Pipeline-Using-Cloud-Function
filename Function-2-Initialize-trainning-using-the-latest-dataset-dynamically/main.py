@@ -1,5 +1,5 @@
 # It is a HTTP triggered Function.
-# Remeber you Already need a bucket named "bucket-to-store-dataset-id" and a file "latest-dataset-id.txt" for this approach.
+# Remeber you Already need a bucket named "YOUR_CLOUD_BUCKET_2" and a file "latest-dataset-id.txt" for this approach.
 
 import functions_framework
 from google.cloud import aiplatform, storage
@@ -17,7 +17,7 @@ def check_and_train_model(request):
         # Fetch the datasets and filter by name, then get the most recent one
         all_datasets = aiplatform.ImageDataset.list(order_by="create_time desc")
         # Filter datasets where the display_name matches 'dataset-construction'
-        filtered_datasets = [ds for ds in all_datasets if ds.display_name == 'dataset-construction']
+        filtered_datasets = [ds for ds in all_datasets if ds.display_name == 'dataset-construction']       # Replace "dataset-construction" with the dataset name you used in cloud function 1.
         
         if not filtered_datasets:
             logging.error("No matching datasets found.")
@@ -29,8 +29,8 @@ def check_and_train_model(request):
 
         # Fetch the latest dataset ID from Cloud Storage
         storage_client = storage.Client()
-        bucket_name = 'bucket-to-store-dataset-id'  # Replace with your bucket name
-        blob_name = 'latest-dataset-id.txt'
+        bucket_name = 'YOUR_CLOUD_BUCKET_2'  # Replace with your bucket name
+        blob_name = 'latest-dataset-id.txt'   # A file to store the dataset ID
         blob = storage_client.bucket(bucket_name).blob(blob_name)
         
         # Check if the blob exists to handle the case where there's no ID stored yet
