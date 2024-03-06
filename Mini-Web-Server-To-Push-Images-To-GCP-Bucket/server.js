@@ -27,9 +27,9 @@ const app = express();
 const port = 3000;
 
 // Replace these values with your own
-const projectId = 'quantum-talent-386919';
+const projectId = 'YOUR_PROJECT_ID';
 const keyFilename = './key_to_upload_images.json'; // Path to your service account key file
-const bucketName = 'construction-images'; // The name of your GCS bucket
+const bucketName = 'YOUR_CLOUD_BUCKET_1'; // The name of your GCS bucket
 
 // Create a client to interact with GCS
 const storageClient = new Storage({
